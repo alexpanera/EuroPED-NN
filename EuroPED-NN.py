@@ -146,5 +146,7 @@ def evaluate_model(model, ip, bt, delta, rmag, rminor, kappa, ptot, nesep, zeff)
 
 model = create_model()
 model.load_weights(r'EuroPED_NN_OOD_14_dec.h5')
-#Evaluation example with ip, bt, delta, rmag, rminor, kappa, ptot, nesep, zeff = [1,1,1,1,1,1,1,1,1]
-width, width_epi, width_alea, teped, teped_epi, teped_alea, neped, neped_epi, neped_alea = evaluate_model(model, np.array([1]), np.array([1]), np.array([1]), np.array([1]), np.array([1]) , np.array([1]) , np.array([1]) , np.array([1]) , np.array([1]))
+#Evaluation example with ip, bt, delta, rmag, rminor, kappa, ptot, nesep, zeff = [1.98,2.1,0.18,2.8,0.92,1.6,11.6,3.4,1.13]
+width, width_epi, width_alea, teped, teped_epi, teped_alea, neped, neped_epi, neped_alea = evaluate_model(model,np.array([1.98]),
+                            np.array([2.1]),np.array([0.18]),np.array([2.8]),np.array([0.92]),np.array([1.6]),np.array([11.6]),
+                            np.array([3.4]),np.array([1.13]))
