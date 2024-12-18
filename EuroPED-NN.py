@@ -1,3 +1,28 @@
+#EuroPED-NN, surrogate model of EuroPED pedestal model
+
+# CopyRight Notice
+# author(s) of code: Alex Panera Alvarez,       DIFFER (c) 2023 - 2024
+#                    Aaron Ho,                  DIFFER (c) 2023 - 2024
+
+# CopyRight Disclaimer
+# The Dutch Institute For Fundamental Energy Research (DIFFER) hereby disclaims all copyright interest in the model “EuroPED-NN” (plasma pedestal surrogate model)
+# written by Alex Panera Alvarez and Aaron Ho during their contract period at DIFFER.
+# DIFFER hereby provides permission to license “EuroPED-NN” under the Lesser GPL (GNU LGPL) conditions.
+
+# License Notice
+# This file is part of EuroPED-NN.
+# EuroPED-NN is free software: you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License 
+# as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+# EuroPED-NN is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
+# of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License along with EuroPED-NN. 
+# If not, see <https://www.gnu.org/licenses>. 
+#
+# Reference Journal Articles
+# A. Panera Alvarez et al 2024 Plasma Phys. Control. Fusion 66 095012
+
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras.layers import Input, Concatenate, Dense, Lambda, LeakyReLU
@@ -5,7 +30,7 @@ from tensorflow.keras.models import Model
 from tensorflow_probability import distributions as tfd
 from tensorflow_probability import layers as tfpl
 
-#Model architecture
+Model architecture
 def mean_dist_fn(variational_layer):
     def mean_dist(inputs):
         bias_mean = variational_layer.bias_posterior.mean()
@@ -57,7 +82,7 @@ def create_model(n_hidden1=20,n_hidden_neped=8,n_hidden_teped=8,n_hidden_delta=1
     ndim_out3=tfpl.DistributionLambda(lambda p: tfd.Normal(p[0],p[1]))((m3,s3))
 
     inputs = [input_x1,input_x2,input_x3,input_x4,input_x5,input_x6,input_x7,input_x8]
-    #1--> Delta, 2--> Te_ped, 3--> ne_ped
+    1--> Delta, 2--> Te_ped, 3--> ne_ped
     outputs = [ndim_out1, mean_dist1, ndim_out2, mean_dist2, ndim_out3, mean_dist3]
 
     return Model(inputs, outputs)
