@@ -11,3 +11,5 @@ Based on a Bayesian Neural Network with Noise Contrastive Prior.
 Tested on Python=3.10.11 and TensorFlow=2.15.0
 
 Open Access paper available at https://iopscience.iop.org/article/10.1088/1361-6587/ad6707 
+
+This model is licensed under LGPL-3.0 license. See COPYING, COPYING.LESSER and License_notices files for more information.
