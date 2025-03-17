@@ -30,7 +30,7 @@ from tensorflow.keras.models import Model
 from tensorflow_probability import distributions as tfd
 from tensorflow_probability import layers as tfpl
 
-Model architecture
+#Model architecture
 def mean_dist_fn(variational_layer):
     def mean_dist(inputs):
         bias_mean = variational_layer.bias_posterior.mean()
@@ -82,7 +82,7 @@ def create_model(n_hidden1=20,n_hidden_neped=8,n_hidden_teped=8,n_hidden_delta=1
     ndim_out3=tfpl.DistributionLambda(lambda p: tfd.Normal(p[0],p[1]))((m3,s3))
 
     inputs = [input_x1,input_x2,input_x3,input_x4,input_x5,input_x6,input_x7,input_x8]
-    1--> Delta, 2--> Te_ped, 3--> ne_ped
+    #1--> Delta, 2--> Te_ped, 3--> ne_ped
     outputs = [ndim_out1, mean_dist1, ndim_out2, mean_dist2, ndim_out3, mean_dist3]
 
     return Model(inputs, outputs)
